@@ -1,10 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import useFirebase from '../../hooks/useFirebase';
 import './Header.css'
+import { getAuth,signOut} from "firebase/auth";
+import app from '../../firebase.init';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
+const auth=getAuth(app)
 const Header = () => {
-  const {user,handleSignOut}=useFirebase()
+  // const {user,handleSignOut}=useFirebase()
+  const [user]=useAuthState(auth)
     return (
         <div className='link-style'>
           <nav>
@@ -16,9 +20,9 @@ const Header = () => {
             {
               user?.uid 
               ?
-              <button onClick={handleSignOut}>Sign out</button>
+              <button onClick={()=>signOut(auth)}>Sign out</button>
               :
-              <Link to={'/loging'}>Loging</Link>
+              <Link to={'/login'}>Loging</Link>
             }
           </nav>
         </div>
