@@ -1,0 +1,8 @@
+.link-style nav a{
+    text-decoration: none;
+    margin-right: 10px;
+}
+.link-style nav a:hover{
+    color: green;
+    border-bottom: 3px solid green;
+}
